@@ -10,7 +10,7 @@
 	}
 
 	#login .inner {
-		width: 340px;
+		width: 540px;
 		padding-bottom: 6px;
 		margin: 60px auto;
 		text-align: left;
@@ -43,6 +43,8 @@
 	#login .inner .cssform input[type='text'],
 	#login .inner .cssform input[type='password'] {
 		width: 200px;
+		padding:0.5em;
+		margin:10px 0px;
 	}
 
 	#login .inner .cssform label {
@@ -56,18 +58,17 @@
 	}
 
 	#login #remember_me_holder {
-		padding-left: 120px;
+		padding-left: 110px;
 	}
 
 	#login #submit {
-		margin-left: 15px;
+		margin-left: 0px;
 	}
 
 	#login #remember_me_holder label {
 		float: none;
 		margin-left: 0;
-		text-align: left;
-		width: 200px
+		text-align: left;		
 	}
 
 	#login .inner .login_message {
@@ -95,33 +96,18 @@
 		</g:if>
 
 		<form action='${postUrl}' method='POST' id='loginForm' class='cssform'>
-			<p>
-				<label for='username'><g:message code="springSecurity.login.username.label"/>:</label>
-				<input type='text' class='text_' name='j_username' id='username'/>
+			<p>				
+				<input type='text' class='text_' name='j_username' id='username' placeholder="Email"/>
+				<input type='password' class='text_' name='j_password' id='password' placeholder="Password"/>
 			</p>
-
-			<p>
-				<label for='password'><g:message code="springSecurity.login.password.label"/>:</label>
-				<input type='password' class='text_' name='j_password' id='password'/>
-			</p>
-
 			<p id="remember_me_holder">
-				<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' <g:if test='${hasCookie}'>checked='checked'</g:if>/>
+				<input type='checkbox' class='chk' name='${rememberMeParameter}' id='remember_me' checked='checked'/>
 				<label for='remember_me'><g:message code="springSecurity.login.remember.me.label"/></label>
-			</p>
-
-			<p>
+				
 				<input type='submit' id="submit" value='${message(code: "springSecurity.login.button")}'/>
 			</p>
 		</form>
 	</div>
 </div>
-<script type='text/javascript'>
-	<!--
-	(function() {
-		document.forms['loginForm'].elements['j_username'].focus();
-	})();
-	// -->
-</script>
 </body>
 </html>

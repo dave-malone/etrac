@@ -7,9 +7,13 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'taskOrder.label', default: 'Task Order')}" scope="request"/>
         <title>Editing Task Order <g:formatNumber number="${taskOrderInstance.id}" format="0000" /></title>
+        <r:script>
+        	$(document).ready(function(){
+				$("#dueDate").datepicker({dateFormat: 'MM d, yy', changeMonth: true, changeYear: true});
+			})
+        </r:script>
     </head>
     <body>
-        <div class="body">
             <h1>Editing Task Order <g:formatNumber number="${taskOrderInstance.id}" format="0000" /></h1>
             <g:if test="${flash.message}">
             	<div class="message">${flash.message}</div>
@@ -22,9 +26,17 @@
             <g:form method="post" >
                 <g:hiddenField name="id" value="${taskOrderInstance?.id}" />
                 <g:hiddenField name="version" value="${taskOrderInstance?.version}" />
-                <div class="dialog">
                     <table>
                         <tbody>
+                        
+                        	<tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="dueDate"><g:message code="taskOrder.dueDate.label" default="Due Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: taskOrderInstance, field: 'dueDate', 'errors')}">
+                                    <g:textField name="dueDate" value="${taskOrderInstance?.dueDate?.format('MMMM d, yyyy')}" />
+                                </td>
+                            </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
@@ -137,24 +149,13 @@
                                 <td valign="top" class="value ${hasErrors(bean: taskOrderInstance, field: 'existingRack', 'errors')}">
                                     <g:checkBox name="existingRack" value="${taskOrderInstance?.existingRack}" />
                                 </td>
-                            </tr>
-                        
-
-                        
-                            
-                        
-                            
-                        
-                            
-                        
+                            </tr>                        
                         </tbody>
                     </table>
-                </div>
                 <div class="buttons">
                     <span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" /></span>
                     <span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" /></span>
                 </div>
             </g:form>
-        </div>
     </body>
 </html>

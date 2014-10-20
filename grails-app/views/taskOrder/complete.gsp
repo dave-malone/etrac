@@ -75,8 +75,8 @@
 	                </table>
 	                
 	                <div class="buttons">
-	                	<span class="button"><g:actionSubmit class="edit" action="saveCompletedInfo" value="${message(code: 'default.button.saveCompletedInfo.label', default: 'Save')}" /></span>						
-						<span class="button"><g:actionSubmit class="edit" action="markAsCompleted" value="${message(code: 'default.button.markAsCompleted.label', default: 'Complete')}" /></span>
+	                	<span class="button"><g:actionSubmit class="edit" action="saveCompletedInfo" value="${message(code: 'default.button.saveCompletedInfo.label', default: 'Input T&M')}" /></span>						
+						<span class="button"><g:actionSubmit class="edit" action="markAsCompleted" value="${message(code: 'default.button.markAsCompleted.label', default: 'Mark as Completed')}" /></span>
 		            </div>
 	                
 	            </div>

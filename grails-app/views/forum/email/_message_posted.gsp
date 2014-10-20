@@ -5,13 +5,14 @@
 		This is a message from the eTrack Advantage Task Order Management System
 	</p> 
 	<p>
-		Task Order <g:formatNumber number="${taskOrderNumber}" format="0000" /> was ${status} on <g:formatDate date="${statusDate}" format="MM-dd-yyyy 'at' h:mma"/>.<br />
-		Priority: ${priority}<br />
-		Due Date: <g:formatDate date="${dueDate}" format="MM-dd-yyyy 'at' h:mma"/>
-		Please review the Task Order and schedule the work completed.<br />
+		${messageCreatedBy} posted a message to the forum on <g:formatDate date="${messageDateCreated}" format="MM-dd-yyyy 'at' h:mma"/>
+		
+		<br /><br />
+		
+		<strong>${messageContent}</strong>
 	</p>
 	<p>
-		<a href="https://etrac.fedtechadvantage.com/va/taskOrder/show/${taskOrderNumber}">Login to eTrac</a> <br />
+		<a href="https://etrac.fedtechadvantage.com/va/forum/show/${messageId}">Login to eTrac</a> <br />
 		Thank you for using eTrac Advantage! <br />
 		eTrack Advantage Task Order Management System is property of FedTech, LLC.
 	</p>

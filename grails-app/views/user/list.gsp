@@ -37,7 +37,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="paginateButtons">
+            <div class="pagination">
                 <g:paginate total="${userInstanceTotal}" />
             </div>
         </div>

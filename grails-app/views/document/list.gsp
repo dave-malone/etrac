@@ -28,14 +28,14 @@
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">                        
                             <td><g:link action="show" id="${documentInstance.id}">${fieldValue(bean: documentInstance, field: "id")}</g:link></td>                        
                         	<td>${fieldValue(bean: documentInstance, field: "originalFileName")}</td>
-                        	<td>${documentInstance.createdBy.fullName}</td>
-                            <td>${fieldValue(bean: documentInstance, field: "path")}</td>
+                        	<td>${documentInstance.createdBy?.fullName}</td>
+                            <td>${documentInstance.path}</td>
                         </tr>
                     </g:each>
                     </tbody>
                 </table>
             </div>
-            <div class="paginateButtons">
+            <div class="pagination">
                 <g:paginate total="${documentInstanceTotal}" />
             </div>
         </div>

@@ -48,6 +48,15 @@
             margin-left:280px;
             margin-right:20px;
         }
+        
+        #controllerList ul{
+        	list-style-type:none;
+            margin-bottom:10px;
+        }
+        
+        #controllerList ul li{
+        	margin-bottom:10px;
+        }
         </style>
     </head>
     <body>
@@ -59,7 +68,6 @@
                     <ul>
                         <li>App version: <g:meta name="app.version"></g:meta></li>
                         <li>Grails version: <g:meta name="app.grails.version"></g:meta></li>
-                        <li>Groovy version: ${org.codehaus.groovy.runtime.InvokerHelper.getVersion()}</li>
                         <li>JVM version: ${System.getProperty('java.version')}</li>
                         <li>Controllers: ${grailsApplication.controllerClasses.size()}</li>
                         <li>Domains: ${grailsApplication.domainClasses.size()}</li>
@@ -91,6 +99,7 @@
                      <li><g:link controller="emailRule">Manage Email Rules</g:link></li>
                      <li><g:link controller="role">Manage Roles</g:link></li>                     
                      <li><g:link controller="user">Manage Users</g:link></li>
+                     <li><g:link controller="document">Manage Documents</g:link></li>
                 </ul>
             </div>
         </div>
