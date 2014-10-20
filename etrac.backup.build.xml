@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- 
+Author: Xuan Ngo
+Description: Backup MySQL database name called Test and put in it archive_db/Test_YYYY-MM-DD_HH.MM.SS directory.
+              Before you run this script, change the username, password and the path of mysqldump accordingly.
+-->
+<project basedir="." default="backup" name="eTrac Backup">
+ 
+  <!-- Change the following properties accordingly. -->
+  <property name="db.username" value="root"/>
+  <!-- TODO - put the correct username in for prod: m@L0ne82 -->
+  <property name="db.password" value="malone82"/>
+  <property name="db.name" value="vacs"/><!-- The name of the database to backup. -->
+  <property name="etrac.docs.dir" value="/eTrac/docs" />
+  <!-- TODO - find the path to the mysqldump program on the server -->
+  <property name="mysqldump" value="/Program Files (x86)/MySQL/MySQL Server 5.5/bin/mysqldump"/><!-- Path to mysqldump program. -->
+  <!-- TODO - get the loc of the external drive -->
+  <property name="archive.dir" value="/eTrac/backup"/>
+  <tstamp><format property="DAY_TIME_NOW" pattern="yyyy-MM-dd_HH.mm.ss" /></tstamp>
+ 
+  <!-- ***************************************
+  Backup MySQL database, create a tarball containing DB dump and all documents 
+  **************************************** -->
+  <target name="backup">
+    <mkdir dir="${archive.dir}"/><!-- Create the archive directory anyway. -->
+ 
+    <!-- Create a directory to dump the backup -->
+    <property name="backup.dir" value="${archive.dir}/${DAY_TIME_NOW}"/>
+    <mkdir dir="${backup.dir}"/>
+ 
+    <!-- Command to dump the database to *.sql file.-->
+    <exec executable="${mysqldump}" output="${backup.dir}/${DAY_TIME_NOW}.sql">
+      <arg value="--hex-blob"/>
+      <arg value="--extended-insert=false"/>
+      <arg value="--complete-insert=true"/>
+      <arg value="--user=${db.username}"/>
+      <arg value="--password=${db.password}"/>
+      <arg value="${db.name}"/>
+    </exec>
+ 
+    <!-- Compress the dumped file(*.sql) -->
+    <tar destfile="${archive.dir}/${DAY_TIME_NOW}.sql.tar.gz" compression="gzip">
+      <tarfileset dir="${backup.dir}">
+        <include name="${DAY_TIME_NOW}.sql"/>
+      </tarfileset>
+      <tarfileset dir="${etrac.docs.dir}">
+          <include name="*.*"/>          
+      </tarfileset>
+    </tar>
+ 
+    <!-- Delete the dumped file(*.sql) -->
+    <delete file="${backup.dir}/${DAY_TIME_NOW}.sql"/>
+    <delete dir="${backup.dir}"/>
+  </target>
+</project>
